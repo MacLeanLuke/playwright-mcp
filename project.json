@@ -1,0 +1,71 @@
+{
+  "name": "playwright-mcp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/playwright-mcp/src",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm install",
+        "cwd": "apps/playwright-mcp"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{projectRoot}/lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "apps/playwright-mcp"
+      },
+      "dependsOn": ["install"]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node lib/server.js",
+        "cwd": "apps/playwright-mcp"
+      },
+      "dependsOn": ["build"]
+    },
+    "serve-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run watch",
+        "cwd": "apps/playwright-mcp"
+      },
+      "dependsOn": ["install"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm test",
+        "cwd": "apps/playwright-mcp"
+      },
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run lint",
+        "cwd": "apps/playwright-mcp"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean",
+        "cwd": "apps/playwright-mcp"
+      }
+    },
+    "mcp-server": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node cli.js",
+        "cwd": "apps/playwright-mcp"
+      },
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": ["mcp-server", "playwright", "submodule"]
+}
