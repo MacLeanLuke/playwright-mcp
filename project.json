@@ -23,7 +23,7 @@
     "serve": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node lib/server.js",
+        "command": "node cli.js --port 8001",
         "cwd": "apps/playwright-mcp"
       },
       "dependsOn": ["build"]
@@ -61,7 +61,7 @@
     "mcp-server": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node cli.js",
+        "command": "node cli.js --port 8001",
         "cwd": "apps/playwright-mcp"
       },
       "dependsOn": ["build"]
